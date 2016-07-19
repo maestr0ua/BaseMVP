@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">BaseMVP</string>
+
+    <string name="error">Error</string>
+    <string name="error_access_denied">Access error</string>
+    <string name="error_access_denied_message">You cannot use application with current credentials</string>
+    <string name="error_wrong_credential">This user does not exist. Please make sure that you are entering the correct Email/Phone Number &amp; Password</string>
+    <string name="error_network">Network Error</string>
+    <string name="error_server_not_responding"> The server is not responding. </string>
+    <string name="error_network_start_offline_mode">The server is not responding. You will proceed using the app in offline mode.</string>
+    <string name="error_session_expired"> Current session has expired. Please Re-log in. </string>
+    <string name="error_bad_network_connection">Bad network connection</string>
+
+    <string name="text_btn_retry">RETRY</string>
+
+    <string name="hello_toolbar">Title</string>
+    <string name="hello">Hello again</string>
+    <string name="hello_title">Title hello</string>
+
 </resources>

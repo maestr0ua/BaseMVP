@@ -1,22 +1,43 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
     defaultConfig {
         applicationId "com.example.klim.basemvp"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    final def BOOLEAN = "boolean"
+    final def TRUE = "true"
+    final def FALSE = "false"
+
+    final def LOGGING_ENABLED = "LOGGING_ENABLED"
+
     buildTypes {
+        debug {
+            buildConfigField BOOLEAN, LOGGING_ENABLED, TRUE
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
+            buildConfigField BOOLEAN, LOGGING_ENABLED, FALSE
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -26,5 +47,28 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha3'
-    testCompile 'junit:junit:4.12'
+
+    compile('com.squareup.retrofit2:retrofit:2.0.0') {
+        exclude module: 'okhttp'
+    }
+
+    compile('com.squareup.retrofit2:converter-gson:2.0.0') {
+        exclude module: 'okhttp'
+        exclude group: 'com.squareup.okio', module: 'okio'
+        exclude group: 'com.squareup.retrofit2', module: 'retrofit'
+    }
+
+
+    // Rx
+    compile('io.reactivex:rxandroid:1.1.0') {
+        exclude group: 'io.reactivex', module: 'rxjava'
+    }
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile('com.jakewharton.rxbinding:rxbinding:0.2.0') {
+        exclude group: 'io.reactivex', module: 'rxjava'
+    }
+    compile('com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar') {
+        exclude group: 'io.reactivex', module: 'rxjava'
+    }
+    compile('com.squareup.okhttp3:okhttp:3.2.0') {}
 }
